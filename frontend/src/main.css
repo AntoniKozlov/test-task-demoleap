@@ -13,6 +13,63 @@ body {
   width: 285px;
   height: 77px;
 }
+/*Content styles*/
+/*block-1*/
+
+.block-1 .image {
+ /* background: transparent url('') 0% 0% no-repeat padding-box;
+  border-radius: 48px;
+  width: 1406px;
+  height: 932px;*/
+  min-height: 100%;
+  min-width: 640px;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  border-radius: 30px;
+}
+
+.block-1 .main-title {
+  text-align: left;
+  font: normal normal bold 50px/55px Playfair Display;
+  letter-spacing: 0px;
+  margin-left: 30px;
+}
+
+.block-1 .color-1 {
+  color: #2289FF;
+}
+
+.block-1 .color-2 {
+  color: #186AA5;
+  margin-left: 15px;
+}
+
+.block-1 .description {
+  text-align: left;
+  font: normal normal bold 15px/25px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #303030;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.block-1 .popup-over {
+  top: 231px;
+  left: -90px;
+  width: 400px;
+  height: 200px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 27px #00000024;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.block-1 .image-block {
+  border-radius: 30px;
+}
+
 
 /*footer styles*/
 
@@ -70,8 +127,40 @@ display: flex;
 
 }
 
+.first-column-text {
+  text-align: left;
+  font: normal normal normal 14px/28px Poppins;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+
+.circle {
+  background: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin: 0 5px;
+  display: flex;
+}
+
+.second-column-title, .third-column-title, .fourth-column-title {
+  text-align: left;
+  font: normal normal bold 18px/26px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+.second-column-text, .third-column-text, .fourth-column-text {
+  text-align: left;
+  font: normal normal normal 14px/41px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
 @media screen and (max-width: 800px) {
-  .info {
+ /* .info {
     display: block;
-  }
+  }*/
 }
