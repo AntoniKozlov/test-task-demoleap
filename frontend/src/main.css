@@ -1,0 +1,77 @@
+body {
+  margin: auto;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background-image: url('../assets/Group9821.svg');
+  width: 285px;
+  height: 77px;
+}
+
+/*footer styles*/
+
+.footer {
+  width: 100%;
+
+}
+
+.info {
+  
+  background-color: #14395B;
+display: flex;
+  /*display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(1, 331px);*/
+}
+
+.base {
+  height: 74px;
+  background-color: #0B2F50;
+}
+
+.base .left {
+  width: 50%;
+  float: left;
+}
+
+.base .right {
+  width: 50%;
+  float: right;
+}
+
+.base .left-right {
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+  color: #FFFFFF;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 14px/20px var(--unnamed-font-family-noto-sans-cjk-kr);
+  letter-spacing: var(--unnamed-character-spacing-0);
+}
+
+.base .left-right div {
+  margin: auto 0;
+  text-align: center;
+}
+
+.footer-logo {
+  object-fit: cover;
+  background-image: url('../assets/Group9821.svg');
+  background-repeat: no-repeat, repeat;
+  width: 160px;
+  height: 36px;
+
+}
+
+@media screen and (max-width: 800px) {
+  .info {
+    display: block;
+  }
+}
