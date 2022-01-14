@@ -11,6 +11,9 @@
         <link href="./Flow1.css" rel="stylesheet">
 
         <title>Demoleap</title>
+        <script defer src="./scripts/jquery-3.6.0.js"></script>
+        <script defer src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+        <script defer src="./main.js"></script>
 
     </head>
     <body>
@@ -245,6 +248,23 @@
           <div class="block-4">
             <div class="title">
               Apartment Rates
+            </div>
+            <div class="switch-graphs">
+              <div class="graph">
+                <a id="graph" class="chart-active">Graph</a>
+              </div>
+              <div class="pie-chart">
+                <a id="pie">Pie-Chart</a>
+              </div>
+            </div>
+            <div class="charts">
+              <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+              <div id="pieContainer" class="inactive" style="height: 500px; width: 100%;"></div>
+            </div>
+            <div class="action-btns">
+              <div id="random-btn" class="random"><span>Randomize data locally</span></div>
+              <div id="server-btn" class="server"><span>Get data from server</span></div>
+              <div id="node-btn" class="node"><span>Get data from local Node.js</span></div>
             </div>
           </div>
 

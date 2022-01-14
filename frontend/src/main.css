@@ -378,7 +378,69 @@ body {
   text-shadow: 0px 3px 6px #FFFFFF29;
 }
 
+.block-4 .switch-graphs, .action-btns {
+  display: flex;
+  justify-content: center;
+}
 
+.block-4 .switch-graphs a {
+  font: normal normal normal 25px/36px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.79;
+  cursor: pointer;
+}
+
+.block-4 .graph {
+  margin-right: 20px;
+}
+
+.chart-active {
+  text-decoration: underline;
+  font: normal normal bold 25px/36px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #2289FF !important;
+  opacity: 1;
+}
+
+.block-4 .action-btns div {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.block-4 .action-btns div span {
+  text-align: center;
+  font: normal normal normal 15px/15px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.79;
+}
+
+.block-4 .action-btns .server {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.block-4 .action-btns {
+  margin-top: 20px;
+}
+
+.block-4 .action-btns div:hover {
+  background: #2289FF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.block-4 .action-btns div:hover span {
+  color: #FFFFFF;
+}
+
+.block-4 .inactive {
+  display: none;
+}
 /*footer styles*/
 
 .footer {
