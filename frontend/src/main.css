@@ -1,5 +1,27 @@
+:root{
+  --background-dark: #2d3548;
+  --text-light: rgba(255,255,255,0.6);
+  --text-lighter: rgba(255,255,255,0.9);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: ;
+  --spacing-xl: 32px;
+  --spac24pxing-xxl: 64px;
+  --width-container: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
 body {
-  margin: auto;
+  height: 100%;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -14,20 +36,24 @@ body {
   height: 77px;
 }
 /*Content styles*/
-/*block-1*/
 
+.content {
+  flex: 1 0 auto;
+}
+
+/*block-1*/
+.block-1 {
+  position: relative;
+  margin-top: 50px;
+}
 .block-1 .image {
- /* background: transparent url('') 0% 0% no-repeat padding-box;
-  border-radius: 48px;
-  width: 1406px;
-  height: 932px;*/
   min-height: 100%;
-  min-width: 640px;
-  width: 100%;
+  min-width: 240px;
   height: auto;
+  border-radius: 30px;
+  width: 100%;
   top: 0;
   left: 0;
-  border-radius: 30px;
 }
 
 .block-1 .main-title {
@@ -64,10 +90,292 @@ body {
   box-shadow: 0px 3px 27px #00000024;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
+
+  /*width: 100%;
+  height: 100%;*/
+  z-index: 10;
+  position: absolute;
+  top: 100px;
+  left: 0;
 }
 
 .block-1 .image-block {
   border-radius: 30px;
+  margin-left: 300px;
+}
+
+/*block-2*/
+
+.block-2 {
+  margin-top: 50px;
+}
+
+.block-2 .title {
+  text-align: center;
+  font: normal normal bold 48px/64px Playfair Display;
+  letter-spacing: 0px;
+  color: #14395B;
+  text-shadow: 0px 3px 6px #FFFFFF29;
+}
+
+.block-2 .description {
+  text-align: center;
+  font: normal normal normal 24px/35px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #8D9598;
+}
+
+/*block-3*/
+
+.block-3 {
+  margin-top: 50px;
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.block-3 .card {
+  border-radius: 10px;
+  width: 460px;
+  overflow: hidden;
+  padding: 15px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 15px;
+  position: relative;
+  content: '';
+  display: block;
+  margin-top: 20px;
+}
+
+
+.card-header img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.card-header-background {
+  background-size: cover;
+  background-position: center;
+  right: 0;
+  top: 0;
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition: 
+    filter 200ms linear,
+    transform 200ms linear;
+  border-radius: 15px;
+  width: 100%;
+  height: 277px;
+}
+
+.card-header-background-1 {
+  background-image: url('../assets/Mask Group4.png');
+}
+
+.card-header-background-2 {
+  background-image: url('../assets/Mask Group 4-1.png');
+}
+
+.card-header-background-3 {
+  background-image: url('../assets/Mask Group 4-2.png');
+}
+
+.card .distance {
+  background: #000000 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  opacity: 0.4;
+  left: 20px;
+  position: absolute;
+  top: 20px;
+  font: normal normal bold 15px/18px Sen;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  padding: 5px;
+}
+
+.card .appointment {
+  background: #78C720 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  right: 20px;
+  position: absolute;
+  top: 20px;
+  padding: 5px;
+  text-transform: uppercase;
+  font: normal normal normal 11px/16px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.card .user {
+  background: #EEEFF1 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 20px #1E62E83D;
+  right: 20px;
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+}
+
+.card .user img {
+  border-radius: 50%;
+  width: 49px;
+  height: 49px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.card-content .location {
+  display: flex;
+  margin-left: -4px;
+}
+
+.card-content .location img {
+  width: 23px;
+  height: 23px;
+}
+
+.card-content .location .text {
+  text-align: left;
+  font: normal normal normal 17px/25px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: gray;
+  text-transform: capitalize;
+}
+
+.card-content .price {
+  text-align: left;
+  font: normal normal bold 25px/30px Sen;
+  letter-spacing: 0px;
+  color: #1E62E8;
+}
+
+.card-content .name-hotel {
+  text-align: left;
+  font: normal normal bold 22px/26px Sen;
+  letter-spacing: 0px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.card-content .description {
+  text-align: left;
+  font: normal normal normal 14px/20px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: gray;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+
+.card-content .info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.card-content .info .body {
+  background: rgba(224, 234, 242, .32) 0% 0% no-repeat padding-box;
+  border: 1px solid #1E62E808;
+  border-radius: 4px;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-content .info .body .outer {
+  display: flex;
+  text-align: left;
+  font: normal normal bold 16px/24px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #1E62E8;
+  opacity: 1;
+}
+
+.card-content .info .body .title {
+  text-align: left;
+  font: normal normal normal 14px/20px Noto Sans CJK KR;
+  letter-spacing: 0px;
+  color: #000000;
+  text-transform: capitalize;
+  opacity: 0.5;
+}
+
+.card-content .info .body .bathroom {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.card-content .info .body img {
+  margin-left: 5px;
+}
+
+.card-content .info .actions {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-content .actions .add, .exit {
+  background: #EBEBEB 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  margin: auto;
+}
+
+.card-content .actions .favourite {
+  background: #FE7847 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  margin: auto;
+}
+
+.card-content .actions .add img {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.card-content .actions .exit img {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.card-content .actions .favourite img {
+  width: 34px;
+  height: 34px;
+  margin-top: 2px;
+}
+
+/*block-4*/
+
+.block-4 {
+  background: #F4F7FA 0% 0% no-repeat padding-box;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.block-4 .title {
+  text-align: center;
+  font: normal normal bold 48px/64px Playfair Display;
+  letter-spacing: 0px;
+  color: #14395B;
+  text-shadow: 0px 3px 6px #FFFFFF29;
 }
 
 
@@ -75,17 +383,46 @@ body {
 
 .footer {
   width: 100%;
-
+  flex: 0 0 auto;
 }
 
-.info {
-  
+.footer .info { 
   background-color: #14395B;
-display: flex;
-  /*display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-template-rows: repeat(1, 331px);*/
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.footer .info .outer-links { 
+  display: flex; 
+  justify-content: center; 
+  margin-top: 20px;
+}
+
+.footer .info .outer-links .circle span { 
+  margin: auto;
+}
+
+.footer .info .outer-links .circle .img-1, .img-3, .img-4 { 
+  margin: auto;
+  display: block;
+}
+
+.footer .info .outer-links .circle .img-4 { 
+  border-radius: 50%;
+}
+
+.footer .info .elem { 
+  width: 300px;
+  height: 331px; 
+  justify-content: flex-start; 
+  display: flex;
+  position: relative;
+}
+
+.footer .margin-top-50 { 
+  margin-top: 50px;
 }
 
 .base {
@@ -106,11 +443,11 @@ display: flex;
 .base .left-right {
   height: 100%;
   display: flex;
-
   justify-content: center;
+  text-align: right;
+  font: normal normal normal 14px/20px Noto Sans CJK KR;
+  letter-spacing: 0px;
   color: #FFFFFF;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 14px/20px var(--unnamed-font-family-noto-sans-cjk-kr);
-  letter-spacing: var(--unnamed-character-spacing-0);
 }
 
 .base .left-right div {
@@ -124,7 +461,6 @@ display: flex;
   background-repeat: no-repeat, repeat;
   width: 160px;
   height: 36px;
-
 }
 
 .first-column-text {
