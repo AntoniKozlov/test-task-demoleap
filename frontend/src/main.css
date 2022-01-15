@@ -82,17 +82,12 @@ body {
 }
 
 .block-1 .popup-over {
-  top: 231px;
-  left: -90px;
   width: 400px;
   height: 200px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 27px #00000024;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-
-  /*width: 100%;
-  height: 100%;*/
   z-index: 10;
   position: absolute;
   top: 100px;
@@ -378,6 +373,14 @@ body {
   text-shadow: 0px 3px 6px #FFFFFF29;
 }
 
+.block-4 .switch-graphs {
+  margin-top: 30px;
+}
+
+.block-4 .action-btns {
+  flex-wrap: wrap;
+}
+
 .block-4 .switch-graphs, .action-btns {
   display: flex;
   justify-content: center;
@@ -410,6 +413,7 @@ body {
   opacity: 1;
   padding: 10px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .block-4 .action-btns div span {
@@ -440,6 +444,14 @@ body {
 
 .block-4 .inactive {
   display: none;
+}
+
+.charts {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 50px 50px 0px;
 }
 /*footer styles*/
 
@@ -481,6 +493,7 @@ body {
   justify-content: flex-start; 
   display: flex;
   position: relative;
+  margin-left: 50px;
 }
 
 .footer .margin-top-50 { 
@@ -557,8 +570,97 @@ body {
   color: #FFFFFF;
 }
 
-@media screen and (max-width: 800px) {
- /* .info {
-    display: block;
-  }*/
+.canvasjs-chart-credit {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .block-1 .popup-over {
+    width: 400px;
+    height: 200px;
+    top: 100px;
+  }
+  .block-1 .main-title {
+    font: normal normal bold 50px/55px Playfair Display;
+    margin-left: 30px;
+  }
+  .block-1 .description {
+    font: normal normal bold 15px/25px Noto Sans CJK KR;
+    margin-top: 20px;
+  }
+  .block-1 .image-block {
+    margin-left: 300px;
+  }
+}
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .block-1 .popup-over {
+    width: 340px;
+    height: 160px;
+    top: 80px;
+  }
+  .block-1 .main-title {
+    font: normal normal bold 40px/45px Playfair Display;
+  }
+  .block-1 .description {
+    font: normal normal bold 12px/20px Noto Sans CJK KR;
+    margin-top: 17px;
+  }
+  .block-1 .image-block {
+    margin-left: 270px;
+  }
+}
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .block-1 .popup-over {
+    width: 300px;
+    height: 120px;
+    top: 60px;
+  }
+  .block-1 .main-title {
+    font: normal normal bold 30px/35px Playfair Display;
+  }
+  .block-1 .description {
+    font: normal normal bold 10px/17px Noto Sans CJK KR;
+    margin-top: 12px;
+  }
+  .block-1 .image-block {
+    margin-left: 240px;
+  }
+}
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .block-1 .popup-over {
+    width: 250px;
+    height: 90px;
+    top: 40px;
+  }
+  .block-1 .main-title {
+    font: normal normal bold 20px/25px Playfair Display;
+  }
+  .block-1 .description {
+    font: normal normal bold 8px/14px Noto Sans CJK KR;
+    margin-top: 7px;
+  }
+  .block-1 .image-block {
+    margin-left: 210px;
+  }
+}
+/* Portrait phones and smaller */
+@media (max-width: 360px) {
+  .block-1 .popup-over {
+    width: 200px;
+    height: 70px;
+    top: 10px;
+  }
+  .block-1 .main-title {
+    font: normal normal bold 10px/15px Playfair Display;
+  }
+  .block-1 .description {
+    font: normal normal bold 6px/10px Noto Sans CJK KR;
+    margin-top: 0px;
+  }
+  .block-1 .image-block {
+    margin-left: 180px;
+  }
 }
