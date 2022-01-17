@@ -1,9 +1,9 @@
-window.onload = function () {
+window.onload = () => {
     const maxValueGraph = 50, lengthGraph = 12;
-    const labelGraph = 'label', idGraph = '#chartContainer', typeGraph = 'bars';
+    const labelGraph = 'label', graphId = '#chartContainer', graphType = 'bars';
     const graphLabelsX = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
     const maxValuePie = 50, lengthPie = 3;
-    const namePie = 'name', idPie = '#pieContainer', typePie = 'pie';
+    const pieName = 'name', pieId = '#pieContainer', pieType = 'pie';
     const pieNamesX = ["Data1", "Data2", "Data3"];
     const pieColors = ["#186AA5", "#0FA8E2", "#98E3FE"]
 
@@ -25,9 +25,7 @@ window.onload = function () {
 		},
 
         data: [{
-                // Change type to "doughnut", "line", "splineArea", etc.
                 color: "#186AA5",
-               
                 type: "column",
                 dataPoints: []
         }]
@@ -50,153 +48,153 @@ window.onload = function () {
             dataPoints: []
         }]
     };
-
-    let isGraphSelected = true;
-
-    $('#graph').click(function(el) {
-        isGraphSelected = true;
-        
+    
+    $('#graph').click(function() {
         $('#pie').removeClass('chart-active');
         $('#chartContainer').removeClass('inactive');
         $('#pieContainer').addClass('inactive');
         $(this).addClass('chart-active');
+
+        $(graphId).CanvasJSChart().render();
     });
 
-    $('#pie').click(function(el) {
-        isGraphSelected = false;
-
+    $('#pie').click(function() {
         $('#graph').removeClass('chart-active');
         $('#pieContainer').removeClass('inactive');
         $('#chartContainer').addClass('inactive');
         $(this).addClass('chart-active');
+
+        $(pieId).CanvasJSChart().render();
     });
 
-    let isBtnClicked = false;
+    let isLoadingData = false;
 
-    let randomBtn = document.getElementById("random-btn");
-    randomBtn.addEventListener("click", randomBtnClick, false);
+    $('#random-btn').click((el) => {
+        randomBtnClick(el);
+    });
 
-    let serverBtn = document.getElementById("server-btn");
-    serverBtn.addEventListener("click", serverBtnClick, false);
+    $('#server-btn').click((el) => {
+        serverBtnClick(el);
+    });
 
-    let nodeBtn = document.getElementById("node-btn");
-    nodeBtn.addEventListener("click", nodeBtnClick, false);
+    $('#node-btn').click((el) => {
+        nodeBtnClick(el);
+    });
 
- 
-
-    async function serverBtnClick() {
-        if (isBtnClicked) return;
-        isBtnClicked = true;
-
-        await updateChartsByNodeAndExternalServer(pathGetServerData);
-
-        isBtnClicked = false;
+    serverBtnClick = async (el) => {
+        await updateChartsByNodeAndExternalServer(el.currentTarget, pathGetServerData);
     }
 
-    async function nodeBtnClick() {
-        if (isBtnClicked) return;
-        isBtnClicked = true;
-
-        await updateChartsByNodeAndExternalServer(pathGetData);
-
-        isBtnClicked = false;
+    nodeBtnClick = async (el) => {
+        await updateChartsByNodeAndExternalServer(el.currentTarget, pathGetData); 
     }
 
-    function randomBtnClick() {
-        if (isBtnClicked) return;
-        isBtnClicked = true;
-
-        updateChartsByRandom();
-
-        isBtnClicked = false;
+    randomBtnClick = (el) => {
+        updateChartsByRandom(el.currentTarget);
     }
  
-    async function updateChartsByNodeAndExternalServer(path) {
+    updateChartsByNodeAndExternalServer = async (el, path) => {
+        if (isLoadingData) return;
+        isLoadingData = true;
+        $(el).addClass('disable-btn');
+
         try {
             await $.ajax({
                 url:`http://localhost:3002/diagramData/${path}`,
                 type:"GET",
                 dataType:"json",   
                 contentType:"application/json; charset=utf-8",    
-                success: function(res) {
-                    let typeDiagram, diagramOptions, diagramXName, idDiagram;
-                    if (isGraphSelected) {
-                        typeDiagram = typeGraph;
-                        diagramOptions = graphOptions;
-                        diagramXName = labelGraph;
-                        idDiagram = idGraph;
-                    } else {
-                        typeDiagram = typePie;
-                        diagramOptions = pieOptions;
-                        diagramXName = namePie;
-                        idDiagram = idPie;
-                    }
-                    diagramOptions.data[0].dataPoints = [];
+                success: (res) => {
 
-                    let objectResData = res.data[typeDiagram];
-                    let index = 0;
-                    for (let key in objectResData) {
-                        let obj = {};
-                        obj[`${diagramXName}`] = key;
-                        if (!isGraphSelected)
-                            obj.color = pieColors[index];
-                        obj.y = objectResData[key];
-                        diagramOptions.data[0].dataPoints.push(obj);
-                        index++;
-                    }
+                    updateDiagramWithServerData(graphOptions, labelGraph, graphId, res, graphType);
 
-                    $(idDiagram).CanvasJSChart().render();
+                    updateDiagramWithServerData(pieOptions, pieName, pieId, res, pieType);
+
                 },
-                error: function(jqXHR,textStatus,errorThrown) {
-                alert("You can not send Cross Domain AJAX requests: " + errorThrown);
+                error: (errorThrown) => {
+                    alert("You can not send Cross Domain AJAX requests: " + errorThrown);
                 }
             });
         } catch (err) {
             console.log(err);
         }
+
+        isLoadingData = false;
+        $(el).removeClass('disable-btn');
     }
 
-    function updateChartsByRandom() {
+    updateChartsByRandom = (el) => {
+        if (isLoadingData) return;
+        isLoadingData = true;
+        
+        $(el).addClass('disable-btn');
+
         try {
-            let lengthDiagram, maxValueDiagram, diagramOptions, diagramX, diagramXName, idDiagram;
-            if (isGraphSelected) {
-                lengthDiagram = lengthGraph;
-                maxValueDiagram = maxValueGraph;
-                diagramOptions = graphOptions;
-                diagramX = graphLabelsX;
-                diagramXName = labelGraph;
-                idDiagram = idGraph;
-            } else {
-                lengthDiagram = lengthPie;
-                maxValueDiagram = maxValuePie;
-                diagramOptions = pieOptions;
-                diagramX = pieNamesX;
-                diagramXName = namePie;
-                idDiagram = idPie;
-            }
 
-            let arrValues = Array.from({length: lengthDiagram}, () => Math.floor(Math.random() * maxValueDiagram));
+            updateDiagramWithLocalData(lengthGraph, labelGraph, graphLabelsX, maxValueGraph, graphId, graphOptions, graphType);
 
-            diagramOptions.data[0].dataPoints = [];
-
-            arrValues.forEach((value, index) => {
-                let obj = {};
-                obj[`${diagramXName}`] = diagramX[index];
-                if (!isGraphSelected)
-                    obj.color = pieColors[index];
-                obj.y = value;
-                diagramOptions.data[0].dataPoints.push(obj);
-            });
-
-            $(idDiagram).CanvasJSChart().render();
-
+            updateDiagramWithLocalData(lengthPie, pieName, pieNamesX, maxValuePie, pieId, pieOptions, pieType);
+            
         } catch (err) {
             console.log(err);
         }
+
+        isLoadingData = false;
+        $(el).removeClass('disable-btn');
     }
     
-    $(idGraph).CanvasJSChart(graphOptions);
-    $(idPie).CanvasJSChart(pieOptions);
+    generateRandomValues = (lengthDiagram, maxValueDiagram) => {
+        return Array.from({length: lengthDiagram}, () => Math.floor(Math.random() * maxValueDiagram));
+    }
+    
+    updateDiagramWithLocalData = (lengthDiagram, diagramXName, diagramX, maxValueDiagram, diagramId, diagramOptions, diagramType) => {
+        let diagramValues = generateRandomValues(lengthDiagram, maxValueDiagram);
+
+        addRandomValues(diagramValues, diagramXName, diagramX, diagramOptions, diagramType);
+
+        $(diagramId).CanvasJSChart().render();
+    }
+
+    updateDiagramWithServerData = (diagramOptions, diagramXName, diagramId, res, diagramType) => {
+        let diagramResData = res.data[diagramType];
+
+        addValuesFromServerObject(diagramResData, diagramXName, diagramOptions, diagramType);
+
+        $(diagramId).CanvasJSChart().render();
+    }
+
+    addRandomValues = (diagramValues, diagramXName, diagramX, diagramOptions, diagramType) => {
+        diagramOptions.data[0].dataPoints = [];
+
+        diagramValues.forEach((value, index) => {
+            let obj = {};
+            obj[`${diagramXName}`] = diagramX[index];
+            if (diagramType === pieType) {
+                obj.color = pieColors[index];
+            }
+               
+            obj.y = value;
+            diagramOptions.data[0].dataPoints.push(obj);
+        });
+    }
+    
+    addValuesFromServerObject = (objectResData, diagramXName, diagramOptions, diagramType) => {
+        diagramOptions.data[0].dataPoints = [];
+
+        let index = 0;
+        for (let key in objectResData) {
+            let obj = {};
+            obj[`${diagramXName}`] = key;
+            if (diagramType === pieType)
+                obj.color = pieColors[index];
+            obj.y = objectResData[key];
+            diagramOptions.data[0].dataPoints.push(obj);
+            index++;
+        }
+    }
+
+    $(graphId).CanvasJSChart(graphOptions);
+    $(pieId).CanvasJSChart(pieOptions);
     updateChartsByRandom();
 
 }

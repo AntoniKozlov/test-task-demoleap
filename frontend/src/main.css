@@ -24,6 +24,12 @@ body {
   height: 100%;
 }
 
+.disable-btn {
+  pointer-events: none;
+  background-color: gray !important;
+  color: white !important;
+}
+
 .header {
   width: 100%;
   display: flex;
@@ -416,7 +422,7 @@ body {
   margin-top: 15px;
 }
 
-.block-4 .action-btns div span {
+.block-4 .action-btns div {
   text-align: center;
   font: normal normal normal 15px/15px Noto Sans CJK KR;
   letter-spacing: 0px;
@@ -438,7 +444,7 @@ body {
   box-shadow: 0px 3px 6px #00000029;
 }
 
-.block-4 .action-btns div:hover span {
+.block-4 .action-btns div:hover {
   color: #FFFFFF;
 }
 
