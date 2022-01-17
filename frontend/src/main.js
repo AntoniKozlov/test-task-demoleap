@@ -112,78 +112,87 @@ window.onload = function () {
     }
  
     async function updateChartsByNodeAndExternalServer(path) {
-        await $.ajax({
-            url:`http://localhost:3002/diagramData/${path}`,
-            type:"GET",
-            dataType:"json",   
-            contentType:"application/json; charset=utf-8",    
-            success: function(res) {
-                let typeDiagram, diagramOptions, diagramXName, idDiagram;
-                if (isGraphSelected) {
-                    typeDiagram = typeGraph;
-                    diagramOptions = graphOptions;
-                    diagramXName = labelGraph;
-                    idDiagram = idGraph;
-                } else {
-                    typeDiagram = typePie;
-                    diagramOptions = pieOptions;
-                    diagramXName = namePie;
-                    idDiagram = idPie;
-                }
-                diagramOptions.data[0].dataPoints = [];
+        try {
+            await $.ajax({
+                url:`http://localhost:3002/diagramData/${path}`,
+                type:"GET",
+                dataType:"json",   
+                contentType:"application/json; charset=utf-8",    
+                success: function(res) {
+                    let typeDiagram, diagramOptions, diagramXName, idDiagram;
+                    if (isGraphSelected) {
+                        typeDiagram = typeGraph;
+                        diagramOptions = graphOptions;
+                        diagramXName = labelGraph;
+                        idDiagram = idGraph;
+                    } else {
+                        typeDiagram = typePie;
+                        diagramOptions = pieOptions;
+                        diagramXName = namePie;
+                        idDiagram = idPie;
+                    }
+                    diagramOptions.data[0].dataPoints = [];
 
-                let objectResData = res.data[typeDiagram];
-                let index = 0;
-                for (let key in objectResData) {
-                    let obj = {};
-                    obj[`${diagramXName}`] = key;
-                    if (!isGraphSelected)
-                        obj.color = pieColors[index];
-                    obj.y = objectResData[key];
-                    diagramOptions.data[0].dataPoints.push(obj);
-                    index++;
-                }
+                    let objectResData = res.data[typeDiagram];
+                    let index = 0;
+                    for (let key in objectResData) {
+                        let obj = {};
+                        obj[`${diagramXName}`] = key;
+                        if (!isGraphSelected)
+                            obj.color = pieColors[index];
+                        obj.y = objectResData[key];
+                        diagramOptions.data[0].dataPoints.push(obj);
+                        index++;
+                    }
 
-                $(idDiagram).CanvasJSChart().render();
-            },
-            error: function(jqXHR,textStatus,errorThrown) {
-               alert("You can not send Cross Domain AJAX requests: " + errorThrown);
-            }
-        });
+                    $(idDiagram).CanvasJSChart().render();
+                },
+                error: function(jqXHR,textStatus,errorThrown) {
+                alert("You can not send Cross Domain AJAX requests: " + errorThrown);
+                }
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     function updateChartsByRandom() {
-        let lengthDiagram, maxValueDiagram, diagramOptions, diagramX, diagramXName, idDiagram;
-        if (isGraphSelected) {
-            lengthDiagram = lengthGraph;
-            maxValueDiagram = maxValueGraph;
-            diagramOptions = graphOptions;
-            diagramX = graphLabelsX;
-            diagramXName = labelGraph;
-            idDiagram = idGraph;
-        } else {
-            lengthDiagram = lengthPie;
-            maxValueDiagram = maxValuePie;
-            diagramOptions = pieOptions;
-            diagramX = pieNamesX;
-            diagramXName = namePie;
-            idDiagram = idPie;
+        try {
+            let lengthDiagram, maxValueDiagram, diagramOptions, diagramX, diagramXName, idDiagram;
+            if (isGraphSelected) {
+                lengthDiagram = lengthGraph;
+                maxValueDiagram = maxValueGraph;
+                diagramOptions = graphOptions;
+                diagramX = graphLabelsX;
+                diagramXName = labelGraph;
+                idDiagram = idGraph;
+            } else {
+                lengthDiagram = lengthPie;
+                maxValueDiagram = maxValuePie;
+                diagramOptions = pieOptions;
+                diagramX = pieNamesX;
+                diagramXName = namePie;
+                idDiagram = idPie;
+            }
+
+            let arrValues = Array.from({length: lengthDiagram}, () => Math.floor(Math.random() * maxValueDiagram));
+
+            diagramOptions.data[0].dataPoints = [];
+
+            arrValues.forEach((value, index) => {
+                let obj = {};
+                obj[`${diagramXName}`] = diagramX[index];
+                if (!isGraphSelected)
+                    obj.color = pieColors[index];
+                obj.y = value;
+                diagramOptions.data[0].dataPoints.push(obj);
+            });
+
+            $(idDiagram).CanvasJSChart().render();
+
+        } catch (err) {
+            console.log(err);
         }
-
-        let arrValues = Array.from({length: lengthDiagram}, () => Math.floor(Math.random() * maxValueDiagram));
-
-        diagramOptions.data[0].dataPoints = [];
-
-        arrValues.forEach((value, index) => {
-            let obj = {};
-            obj[`${diagramXName}`] = diagramX[index];
-            if (!isGraphSelected)
-                obj.color = pieColors[index];
-            obj.y = value;
-            diagramOptions.data[0].dataPoints.push(obj);
-        });
-
-        $(idDiagram).CanvasJSChart().render();
     }
     
     $(idGraph).CanvasJSChart(graphOptions);
