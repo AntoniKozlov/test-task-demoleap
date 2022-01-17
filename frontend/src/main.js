@@ -112,7 +112,8 @@ window.onload = () => {
 
                 },
                 error: (errorThrown) => {
-                    alert("You can not send Cross Domain AJAX requests: " + errorThrown);
+                    console.log(errorThrown);
+                    alert("You can not send Cross Domain AJAX requests");
                 }
             });
         } catch (err) {
